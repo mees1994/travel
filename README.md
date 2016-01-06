@@ -1,13 +1,6 @@
 Description
 ===========
-This demo is MEAN with books.
-
-Video available at http://goo.gl/KswfXf
-
-Presentation available at http://goo.gl/idIiq3
-
-**Your assignment: Fix the TODO's**
-
+This demo is for CRIA Assignment 4, Laid Back Reizen Demo.
 
 Setup
 =====
@@ -21,22 +14,22 @@ mkdir ~/workspaces
 
 Clone the repository with
 ```
-git clone https://github.com/theotheu/books.git ~/workspaces/books
+git clone https://github.com/mees1994/travel.git ~/workspaces/travel
 ```
 
 Go to the working directory
 ```
-cd ~/workspaces/books
+cd ~/workspaces/travel
 ```
 
-See the README in ~/workspaces/books/data how to import the initial seed
+See the README in ~/workspaces/travel/data how to import the initial seed
 
 
 Configuration
 ----------
 Copy ```config.js.default``` to ```config.js```.
 ```sh
-cp ~/workspaces/books/server/config/config.js.default ~/workspaces/books/server/config/config.js
+cp ~/workspaces/travel/server/config/config.js.default ~/workspaces/travel/server/config/config.js
 ```
 
 Change the database, port and emailaddress.
@@ -45,12 +38,12 @@ Example
 ```javascript
 module.exports = {
     development: {
-        db: 'mongodb://localhost/books-dev',
+        db: 'mongodb://localhost/travelbureau',
         port: 3000,
         debug: true
     }
     , test: {
-        db: 'mongodb://localhost/books-tst',
+        db: 'mongodb://localhost/travelbureau-tst',
         port: 3000,
         debug: false
     }
@@ -65,7 +58,7 @@ The archive is without the node modules.
 
 Install with
 ```sh
-cd ~/workspaces/books/server
+cd ~/workspaces/travel/server
 npm install
 ```
 
@@ -95,7 +88,7 @@ nodemon
 
 Tests
 ----------
-See the README in `~/workspaces/books/tests` how to perform tests
+See the README in `~/workspaces/travelbureau/tests` how to perform tests
 
 
 Instructions to prepare a deployment
