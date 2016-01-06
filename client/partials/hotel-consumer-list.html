@@ -1,0 +1,7 @@
+<h2 class="title">Kies een van de onderstaande hotels:</h2>
+
+<ul id="hotelList">
+    <li data-ng-repeat="hotel in hotels.doc">
+        <a href="/#/hotel/{{hotel._id}}">{{hotel.hotelName}}, {{hotel.address}}</a>
+    </li>
+</ul>

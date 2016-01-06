@@ -1,0 +1,19 @@
+<h2 class="title">Arrangement beheren</h2>
+
+<form name="arrangementForm" data-ng-model="arrangementForm">
+
+    <p>Id: <input type="text" data-ng-model="arrangements.doc._id" readonly></p>
+
+    <p>Naam: <input type="text" data-ng-model="arrangements.doc.arrangementName" required></p>
+
+    <p>Prijs PPPN in Euros: <input type="text" data-ng-model="arrangements.doc.pricePPPN" required></p>
+
+    <input type="text" data-ng-model="arrangements.doc.hotelId" hidden="true">
+
+    <p><label class="errorMessage" data-ng-show="errorMessage">De ingevulde waardes zijn niet correct!!!</label></p>
+
+    <button type="button" class="button" data-ng-click="delete()" id="deleteBtn">Delete</button>
+
+    <button type="button" class="button" data-ng-click="save()" id="saveBtn">Save</button>
+
+</form>

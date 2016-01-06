@@ -1,0 +1,7 @@
+<h2 class="title">Op Vakantie? Kies uit een van de onderstaande landen:</h2>
+
+<ul id="countryList">
+    <li data-ng-repeat="country in countries.doc">
+        <a href="/#/locations/{{country._id}}">{{country.countryName}}</a>
+    </li>
+</ul>

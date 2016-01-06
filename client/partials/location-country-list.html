@@ -1,0 +1,9 @@
+<h2 class="title">Kies uit een van de onderstaande locaties:</h2>
+
+<ul id="locationList" class="ul">
+    <li data-ng-repeat="location in locations.doc" class="list" data-ng-click="goToHotels(location._id)">
+        <img class="listImg" src="{{location.picture}}">
+        <h3 class="subTitle">{{location.locationName}}</h3>
+
+    </li>
+</ul>

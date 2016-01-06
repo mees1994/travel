@@ -1,0 +1,22 @@
+<h2 class="title">Hotel {{hotels.doc.hotelName}}</h2>
+
+<p>Address:{{hotels.doc.address}}</p>
+<p>PostCode:{{hotels.doc.postcode}}</p>
+<p>Telefoonnummer:{{hotels.doc.phoneNumber}}</p>
+<p>Locatie:{{locations.doc.locationName}}</p>
+
+<h3 class="title">Kies uit een van de onderstaande arrangementen:</h3>
+
+<ul id="arrangementList">
+    <li data-ng-repeat="arrangement in arrangements.doc">
+        <p><b>{{arrangement.arrangementName}}</b></p>
+        <p>Prijs per persoon per nacht in euro's: {{arrangement.pricePPPN}}</p>
+        <p>Aantal personen: <input type="number" data-ng-model="nPersons"></p>
+        <p>Aantal nachten:  <input type="number" data-ng-model="nNights"></p>
+        <p>StartDatum:  <input type="date" data-ng-model="startDate"></p>
+
+        <p><label class="errorMessage" data-ng-show="errorMessage">De ingevulde waardes zijn niet correct!!!</label></p>
+        <button type="button" data-ng-click="calculateTotal(nPersons, nNights, startDate, arrangement)" class="button">Boeken</button>
+        <hr>
+    </li>
+</ul>
