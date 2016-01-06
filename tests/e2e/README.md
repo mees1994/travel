@@ -76,3 +76,6 @@ protractor conf.js
 - http://angularjs.org
 - http://angular.github.io/protractor
 - http://jasmine.github.io
+
+1. java -jar selenium-server-standalone-2.43.1.jar -Dwebdriver.chrome.driver="C:\Users\Mees\Downloads\chromedriver_win32\chromedriver.exe"            // for selenium
+2. protractor conf.js       //run tests in e2e folder

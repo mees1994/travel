@@ -1,27 +1,36 @@
 <!DOCTYPE html>
-<!-- TODO: Create angular app from html page -->
-<html>
+<html data-ng-app="myApp">
 <head>
-    <title>Book demo</title>
+    <title>Laid Back Reizen demo</title>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+    <div class="main">
+        <h1 class="applicationName">Laid Back Reizen demo</h1>
 
-<h1>Book demo</h1>
+        <button type="button" class="button" data-ng-click="goToConsumer()" data-ng-controller="myCtrl">Consument</button>
+        <button type="button" class="button" data-ng-click="goToWorker()" data-ng-controller="myCtrl">Werknemer</button>
+        </p>
+    </div>
 
-<!-- TODO: Create links as kind of menu -->
+    <p></p>
 
-<!-- TODO: Create angular tag for displaying controller -->
+    <div class="main">
+        <div data-ng-view=""></div>
 
-<hr>
-<!-- TODO: Create angular tag for displaying whoami -->
+        <hr>
+        <div class="myCtrl" data-ng-controller="myCtrl as settings">{{whoami}}</div>
 
-<!-- Lib -->
-<!-- TODO: Include Angularjs libraries -->
+        <!-- Lib -->
+        <script src="./javascripts/lib/angular.min.js"></script>
+        <script src="./javascripts/lib/angular-route.min.js"></script>
+        <script src="./javascripts/lib/angular-resource.min.js"></script>
 
+        <!-- App -->
+        <script src="./javascripts/app.js"></script>
+        <script src="./javascripts/controllers.js"></script>
+        <script src="./javascripts/services.js"></script>
 
-<!-- App -->
-<!-- TODO: Include application libraries -->
-
-
+    </div>
 </body>
 </html>

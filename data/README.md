@@ -1,12 +1,12 @@
 Import instructions
 ===========
-1. Replace `books` with the name of your database.
+1. Replace `travel` with the name of your database.
 1. Import the data (per collection or in one step)
 1. Done
 
 Import seed data in one step
 ```
-mongorestore -d books ~/workspaces/books/data/seed
+mongorestore -d travel ~/workspaces/travel/data/travelbureau
 ```
 
 ## WINDOWS ONLY
@@ -26,4 +26,3 @@ The result will be something like this: __mongorestore -d s12345678 "C:\Users\Br
 Press ENTER and you're done. The database is now stored in your local MongoDB database.
 
 Use Robomongo to connect to your local database and open the database you just created (should be 'p' + your studentnumber), open collections and see the new collection created.
-

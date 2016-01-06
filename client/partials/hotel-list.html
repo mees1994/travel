@@ -1,0 +1,9 @@
+<h2 class="title">Hotels</h2>
+
+<a id="newLink" href="/#/hotels/new">New Hotel</a>
+
+<ul id="hotelList">
+    <li data-ng-repeat="hotel in hotels.doc">
+        <a href="/#/hotels/{{hotel._id}}">{{hotel.hotelName}}, {{hotel.address}}</a>
+    </li>
+</ul>

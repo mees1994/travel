@@ -1,0 +1,90 @@
+<h2 class="title">Hotel beheren</h2>
+
+<form name="hotelForm" data-ng-model="hotelForm">
+
+    <p>Id: <input type="text" data-ng-model="hotels.doc._id" readonly></p>
+
+    <p>Naam: <input type="text" data-ng-model="hotels.doc.hotelName" required></p>
+
+    <p>Adress: <input type="text" data-ng-model="hotels.doc.address" required></p>
+
+    <p>PostCode: <input type="text" data-ng-model="hotels.doc.postcode" required></p>
+
+    <p>Telefoonnummer: <input type="text" data-ng-model="hotels.doc.phoneNumber" required></p>
+
+    <p>Locatie: <select id="locationBox" data-ng-options="o.name for o in options" data-ng-model="selectedOption" required></select></p>
+    <input type="text" hidden="true" data-ng-model="hotels.doc.locationId">
+
+    <p><label class="errorMessage" data-ng-show="errorMessage">De ingevulde waardes zijn niet correct!!!!!!</label></p>
+
+    <button type="button" class="button" data-ng-click="delete()" id="deleteBtn">Delete</button>
+
+    <button type="button" class="button" data-ng-click="save()" id="saveBtn">Save</button>
+
+</form>
+
+<hr>
+
+<h2 class="title">Arrangement(en)</h2>
+
+<p><a id="newLink" href="/#/arrangements/new/{{hotels.doc._id}}">New Arrangement</a></p>
+
+<ul id="arrangementList">
+    <li data-ng-repeat="arrangement in arrangements.doc">
+        <a href="/#/arrangements/{{arrangement._id}}">{{arrangement.arrangementName}}, {{arrangement.pricePPPN}}</a>
+    </li>
+</ul>
+
+<hr>
+
+<h2 class="title">Overzicht boekingen</h2>
+
+<table style="width: 100%">
+    <tr>
+        <td>Geplaats door</td>
+        <td>Aantal personen</td>
+        <td>Aantal dagen</td>
+        <td>Start datum</td>
+        <td>Totaal prijs</td>
+        <td>Arrangement</td>
+    </tr>
+
+    <ul id="bookingList">
+
+            <tr data-ng-repeat="booking in bookings.doc">
+                <td>{{booking.personName}}</td>
+                <td>{{booking.nPersons}}</td>
+                <td>{{booking.nDays}}</td>
+                <td>{{booking.startDate}}</td>
+                <td>{{booking.totalPrice}}</td>
+                <td>{{booking.arrangementName}}</td>
+            </tr>
+
+    </ul>
+
+</table>
+
+<hr>
+
+<h2 class="title">Statestieken hotel</h2>
+
+<p>Totaal aantal personen: {{totalPersons}}</p>
+
+<p>Bruto omzet: {{brutoOmzet}}</p>
+
+<table style="width: 100%">
+    <tr>
+        <td>Arrangement</td>
+        <td>Aantal personen</td>
+    </tr>
+
+    <ul id="arrangementStatisticsList">
+
+        <tr data-ng-repeat="arrangementsStatistic in arrangementsStatistics">
+            <td>{{arrangementsStatistic.arrangementName}}</td>
+            <td>{{arrangementsStatistic.nPersonArrangement}}</td>
+        </tr>
+
+    </ul>
+
+</table>

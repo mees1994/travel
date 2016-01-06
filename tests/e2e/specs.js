@@ -12,187 +12,157 @@ describe('Book test homepage', function () {
 
     it('should get the titles', function () {
 
-        expect(browser.getTitle()).toBe('Book demo');
-        expect(element(by.tagName('h1')).getText()).toBe('Book demo');
-        expect(element(by.tagName('h2')).getText()).toBe('Books');
+        expect(browser.getTitle()).toBe('Laid Back Reizen demo');
+        expect(element(by.tagName('h1')).getText()).toBe('Laid Back Reizen demo');
+        expect(element(by.tagName('h2')).getText()).toBe('Op Vakantie? Kies uit een van de onderstaande landen:');
 
         // Get CSS value
         element(by.tagName('h1')).getCssValue('color')
             .then(function (v) {
-                expect(v).toBe('rgba(0, 0, 0, 1)');
+                expect(v).toBe('rgba(255, 87, 34, 1)');
             });
 
     });
 
-    it('should count the number of books', function () {
+    it('should count the number of countries', function () {
 
-        var books = element.all(by.repeater('book in books'));
+        var countries = element.all(by.repeater('country in countries'));
 
-        expect(books.count()).toBe(10);
-
-    });
-
-    it('should get the first book', function () {
-
-        var books = element.all(by.repeater('book in books'));
-
-        expect(books.get(0).getText()).toEqual('DOCTOR SLEEP, Stephen King');
+        expect(countries.count()).toBe(2);
 
     });
 
-    it('should get the last book', function () {
+    it('should get the first country', function () {
 
-        var books = element.all(by.repeater('book in books'));
+        var countries = element.all(by.repeater('country in countries'));
 
-        expect(books.last().getText()).toEqual('SYCAMORE ROW, John Grisham');
+        expect(countries.get(0).getText()).toEqual('De Antillen');
 
     });
 
-    it('should filter the books and return 1 book', function () {
+    it('should get the last country', function () {
 
-        element(by.model('query')).sendKeys('tar');
+        var countries = element.all(by.repeater('country in countries'));
 
-        var books = element.all(by.repeater('book in books'));
-
-        expect(books.count()).toBe(1);
-        expect(books.get(0).getText()).toEqual('THE GOLDFINCH, Donna Tartt');
+        expect(countries.last().getText()).toEqual('Amerika');
 
     });
 });
 
-describe('CRUD on book', function () {
+describe('CRUD on hotel', function () {
 
     var _id;
 
     beforeEach(function () {
-        browser.get('http://' + localConfig.host + ':' + config.port + '/#/books/new');
+        browser.get('http://' + localConfig.host + ':' + config.port + '/#/hotels/new');
     });
 
     it('should get the titles', function () {
 
-        browser.get('http://' + localConfig.host + ':' + config.port + '/#/books/new');
+        browser.get('http://' + localConfig.host + ':' + config.port + '/#/hotels/new');
 
-        expect(browser.getTitle()).toBe('Book demo');
-        expect(element(by.tagName('h1')).getText()).toBe('Book demo');
-        expect(element(by.tagName('h2')).getText()).toBe('Book');
+        expect(browser.getTitle()).toBe('Laid Back Reizen demo');
+        expect(element(by.tagName('h1')).getText()).toBe('Laid Back Reizen demo');
+        expect(element(by.tagName('h2')).getText()).toBe('Hotel beheren');
 
         // Get CSS value
         element(by.tagName('h1')).getCssValue('color')
             .then(function (v) {
-                expect(v).toBe('rgba(0, 0, 0, 1)');
+                expect(v).toBe('rgba(255, 87, 34, 1)');
             });
 
     });
 
-    /**
-     * @see https://docs.angularjs.org/api/ng/directive/form
-     */
+
     it('should display an empty form', function () {
 
-        browser.get('http://' + localConfig.host + ':' + config.port + '/#/books/new');
+        browser.get('http://' + localConfig.host + ':' + config.port + '/#/hotels/new');
 
-        expect(element(by.model('books.doc._id')).getText()).toBe('');
-        expect(element(by.model('books.doc.title')).getText()).toBe('');
-        expect(element(by.model('books.doc.author')).getText()).toBe('');
-        expect(element(by.model('books.doc.description')).getText()).toBe('');
+        expect(element(by.model('hotels.doc._id')).getText()).toBe('');
+        expect(element(by.model('hotels.doc.hotelName')).getText()).toBe('');
+        expect(element(by.model('hotels.doc.address')).getText()).toBe('');
+        expect(element(by.model('hotels.doc.postcode')).getText()).toBe('');
+        expect(element(by.model('hotels.doc.phoneNumber')).getText()).toBe('');
+        expect(element(by.model('hotels.doc.locationId')).getText()).toBe('');
 
     });
 
-    it('should create a book', function () {
+    var selectDropdownbyNum = function ( element, optionNum ) {
+        if (optionNum){
+            var options = element.all(by.tagName('option'))
+                .then(function(options){
+                    options[optionNum].click();
+                });
+        }
+    };
 
-        /**
-         * First we create the new book
-         */
-        browser.get('http://' + localConfig.host + ':' + config.port + '/#/books/new');
+    it('should create a hotel', function () {
 
-        element(by.model('books.doc.title')).sendKeys('ALL THE LIGHT WE CANNOT SEE');
-        element(by.model('books.doc.author')).sendKeys('Anthony Doerr');
-        element(by.model('books.doc.description')).sendKeys('The lives of a blind French girl and a gadget-obsessed German boy before and during World War II.');
+        browser.get('http://' + localConfig.host + ':' + config.port + '/#/hotels/new');
+
+        element(by.model('hotels.doc.hotelName')).sendKeys('AAAAA');
+        element(by.model('hotels.doc.address')).sendKeys('Anthony Doerrweg 1');
+        element(by.model('hotels.doc.postcode')).sendKeys('6666QQ');
+        element(by.model('hotels.doc.phoneNumber')).sendKeys('5476435645');
+        var location = element(by.model('selectedOption'));
+        selectDropdownbyNum(location, 2);
 
         element(by.id('saveBtn')).click();
 
     });
 
-    it('should query the new created book', function () {
+    it('should update the new created hotel', function () {
 
-        browser.get('http://' + localConfig.host + ':' + config.port);
+        browser.get('http://' + localConfig.host + ':' + config.port + '/#/hotels');
 
-        element(by.model('query')).sendKeys('Anthony Doerr');
 
-        var books = element.all(by.repeater('book in books'));
-
-        expect(books.count()).toBe(1);
-        expect(books.get(0).getText()).toEqual('ALL THE LIGHT WE CANNOT SEE, Anthony Doerr');
-
-    });
-
-    it('should update the new created book', function () {
-
-        browser.get('http://' + localConfig.host + ':' + config.port);
-
-        // Find the book
-        element(by.model('query')).sendKeys('All');
-
-        expect(element.all(by.repeater('book in books')).first().getText()).toBe('ALL THE LIGHT WE CANNOT SEE, Anthony Doerr');
-
+        expect(element.all(by.repeater('hotel in hotels.doc')).last().getText()).toBe('AAAAA, Anthony Doerrweg 1');
+        //element.all(by.repeater('hotel in hotels.doc')).last().$('a').click();
 
         // Click on list item (note the nested selector)
-        element.all(by.repeater('book in books')).first().$('a').click();
+        element.all(by.repeater('hotel in hotels.doc')).last().$('a').click();
 
         // Retrieve id for later retrieval
         // Issue with retrieving value from input field, @see https://github.com/angular/protractor/issues/140
-        element(by.model('books.doc._id')).getAttribute('value')
+        element(by.model('hotels.doc._id')).getAttribute('value')
             .then(function (v) {
                 _id = v;
 
                 // Set new values
-                element(by.model('books.doc.title')).clear();
-                element(by.model('books.doc.title')).sendKeys('The Dreamer of the Snake');
+                element(by.model('hotels.doc.hotelName')).clear();
+                element(by.model('hotels.doc.hotelName')).sendKeys('BBBBB');
 
-                element(by.model('books.doc.author')).clear();
-                element(by.model('books.doc.author')).sendKeys('Ruan Mashander');
+                element(by.model('hotels.doc.address')).clear();
+                element(by.model('hotels.doc.address')).sendKeys('Changed');
 
-                element(by.model('books.doc.description')).clear();
-                element(by.model('books.doc.description')).sendKeys('Lorem ipsum dolor sit amet, consectetuer adipiscing elit.');
+                element(by.model('hotels.doc.postcode')).clear();
+                element(by.model('hotels.doc.postcode')).sendKeys('1111QQ');
 
                 // Save new values
                 element(by.id('saveBtn')).click();
 
                 // Verify new values
-                browser.get('http://' + localConfig.host + ':' + config.port);
-
-                // Find the book
-                element(by.model('query')).sendKeys(_id);
-
-                expect(element.all(by.repeater('book in books')).first().getText()).toBe('The Dreamer of the Snake, Ruan Mashander');
-
-                // browser.pause();
+                expect(element.all(by.repeater('hotel in hotels.doc')).last().getText()).toBe('BBBBB, Changed');
 
             });
 
     });
 
-    it('should delete the new created book', function () {
+    it('should delete the new created hotel', function () {
 
-        browser.get('http://' + localConfig.host + ':' + config.port);
+        browser.get('http://' + localConfig.host + ':' + config.port + '/#/hotels');
 
-        // Find the book
-        element(by.model('query')).sendKeys(_id);
+        element.all(by.repeater('hotel in hotels.doc')).last().$('a').click();
 
-        expect(element.all(by.repeater('book in books')).first().getText()).toBe('The Dreamer of the Snake, Ruan Mashander');
-
-        // Click on list item (note the nested selector)
-        element.all(by.repeater('book in books')).first().$('a').click();
-
-        // Delete book
+        // Delete hotel
         element(by.id('deleteBtn')).click();
 
-        // Verify that the number of books is 10
-        browser.get('http://' + localConfig.host + ':' + config.port);
+        // Verify that the number of hotels is 17
+        browser.get('http://' + localConfig.host + ':' + config.port + '/#/hotels');
 
-        var books = element.all(by.repeater('book in books'));
+        var books = element.all(by.repeater('hotel in hotels'));
 
-        expect(books.count()).toBe(10);
+        expect(books.count()).toBe(17);
 
     });
 

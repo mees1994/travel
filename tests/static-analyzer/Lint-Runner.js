@@ -41,13 +41,13 @@ var config = {
                     'nomen': true,    // true if names should not be checked for initial or trailing underbars.
                     'plusplus': true, // true if ++ and -- should be allowed. (more)
                     'regexp': true,   // true if . and [^...] should be allowed in RegExp literals. They match more material than might be expected, allowing attackers to confuse applications. These forms should not be used when validating in secure applications.
-                    'sloppy': false,  // true if strict whitespace rules should be ignored.
+                    'sloppy': true,  // true if strict whitespace rules should be ignored.
                     'stupid': true,   // true if blocking (-Sync) methods can be used.
                     'sub': false,     // true if subscript notation may be used for expressions better expressed in dot notation.
                     'todo': true,     // true if comments starting with TODO should be allowed.
                     'vars': false,    // true if multiple var statement per function should be allowed.
                     'unparam': true,  // true if warnings should not be given for unused parameters.
-                    'white': false    // true if strict whitespace rules should be ignored.
+                    'white': true    // true if strict whitespace rules should be ignored.
                 }
             },
             {
@@ -88,7 +88,7 @@ var config = {
                     "eqeqeq": true,     // Require triple equals i.e. `===`.
                     "forin": false,     // Tolerate `for in` loops without `hasOwnPrototype`.
                     "immed": true,     // Require immediate invocations to be wrapped in parens e.g. `( function(){}() );`
-                    "latedef": true,     // Prohibit variable use before definition.
+                    "latedef": false,     // Prohibit variable use before definition.
                     "newcap": true,     // Require capitalization of all constructor functions e.g. `new F()`.
                     "noarg": true,     // Prohibit use of `arguments.caller` and `arguments.callee`.
                     "noempty": true,     // Prohibit use of empty blocks.
@@ -96,7 +96,7 @@ var config = {
                     "plusplus": false,     // Prohibit use of `++` & `--`.
                     "regexp": true,     // Prohibit `.` and `[^...]` in regular expressions.
                     "undef": true,     // Require all non-global variables be declared before they are used.
-                    "strict": true,     // Require `use strict` pragma in every file.
+                    "strict": false,     // Require `use strict` pragma in every file.
                     "trailing": true,     // Prohibit trailing whitespaces.
 
                     // == Relaxing Options ================================================
